@@ -5,6 +5,10 @@ export default function ExpenseItem(props) {
   const day = props.date.toLocaleString("en-US", { day: "2-digit" });
   const year = props.date.getFullYear();
 
+  const clickHandler = () => {
+    console.log("Clicked!");
+  };
+
   return (
     <div className="expense-item">
       <div>
@@ -16,6 +20,7 @@ export default function ExpenseItem(props) {
       <div className="expense-item__description">
         <h2>{props.title}</h2>
         <div className="expense-item__price">${props.amount}</div>
+        <button onClick={clickHandler()}>Change title</button>
       </div>
     </div>
   );
