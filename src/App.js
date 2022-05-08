@@ -1,5 +1,6 @@
-import ExpenseItem from "./components/ExpenseItem";
-import "./App.css";
+import "./styles/App.css";
+import NewExpense from "./components/NewExpense/NewExpense";
+import Expenses from "./components/Expenses/Expenses";
 
 const expenses = [
   {
@@ -23,15 +24,17 @@ const expenses = [
   },
 ];
 
+function addExpenseHandler(expense) {
+  console.log("In App.js");
+  expenses.push(expense);
+  console.log(expenses);
+}
+
 function App() {
   return (
     <div className="App">
-      <h2>Let's get started!</h2>
-      <ExpenseItem
-        title={expenses[0].title}
-        amount={expenses[0].amount}
-        date={expenses[0].date}
-      ></ExpenseItem>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
     </div>
   );
 }
