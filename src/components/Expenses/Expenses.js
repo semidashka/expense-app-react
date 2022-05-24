@@ -6,7 +6,7 @@ import Card from "../UI/Card";
 
 import "../../styles/Expenses.css";
 
-export default function Expenses(props) {
+const Expenses = (props) => {
   const [pickedYear, setPickedYear] = useState("2022");
 
   const dropdownYearHandler = (yearFromFilter) => {
@@ -16,11 +16,16 @@ export default function Expenses(props) {
   return (
     <Card classname="expenses">
       <ExpenseFilter selected={pickedYear} onYearPick={dropdownYearHandler} />
-      <ExpenseItem
-        title={props.items[0].title}
-        amount={props.items[0].amount}
-        date={props.items[0].date}
-      />
+      {props.items.map((expense) => (
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      ))}
     </Card>
   );
-}
+};
+
+export default Expenses;
